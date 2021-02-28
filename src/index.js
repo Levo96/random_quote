@@ -22,6 +22,7 @@ window.onload = () => {
     }
     
     componentDidMount() {
+       /* changes to a new API because the old one stopped working
       fetch("https://type.fit/api/quotes")
       .then(res => res.json())
       .then(
@@ -34,8 +35,17 @@ window.onload = () => {
             quote: obj["text"],
             author: obj["author"],
             color: color
+          }); */
+        fetch("https://api.quotable.io/random")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          let color =  "rgb(" + randomNumber(255) + "," + randomNumber(255) + "," +  randomNumber(255) + ")"; 
+          this.setState({
+            quote: result.content,
+            author: result.author,
+            color: color
           });
-          
         },
         (error) => {
           this.setState({
